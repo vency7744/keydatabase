@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambil Key</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ambil Key Anda</h1>
+        <button id="generateKey">Ambil Key</button>
+        <p id="keyResult"></p>
+    </div>
+
+    <script>
+        document.getElementById("generateKey").addEventListener("click", async () => {
+            const response = await fetch("/api/get-key");
+            const data = await response.json();
+            if (data.key) {
+                document.getElementById("keyResult").textContent = `Key Anda: ${data.key}`;
+            } else {
+                document.getElementById("keyResult").textContent = "Gagal mengambil key.";
+            }
+        });
+    </script>
+</body>
+</html>
